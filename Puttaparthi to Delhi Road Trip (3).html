@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Puttaparthi to Delhi Road Trip</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#E9EAE6; --surface:#FAFAF7; --ink:#1D2024; --muted:#555B62;
+  --road:#2B2E33; --paint:#F4B400; --line:#CBCDC6; --green:#1F6F4F; --blue:#3B6FB6;
+  --chip:#EEEFEA; --danger:#B3261E; --shadow:rgba(0,0,0,.08); --onGreen:#fff;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#131518; --surface:#1E2125; --ink:#ECEDE8; --muted:#A3A9B0;
+    --road:#3A3E44; --line:#33373C; --green:#5CC59A; --blue:#7AA7E8;
+    --chip:#2A2E33; --danger:#F2867F; --shadow:rgba(0,0,0,.4); --onGreen:#06241A;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#131518; --surface:#1E2125; --ink:#ECEDE8; --muted:#A3A9B0;
+  --road:#3A3E44; --line:#33373C; --green:#5CC59A; --blue:#7AA7E8;
+  --chip:#2A2E33; --danger:#F2867F; --shadow:rgba(0,0,0,.4); --onGreen:#06241A;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0}
+body{
+  background:var(--bg);color:var(--ink);
+  font-family:'Barlow','Segoe UI',Arial,sans-serif;font-size:16px;line-height:1.45;
+  -webkit-text-size-adjust:100%;
+}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--paint);outline-offset:2px}
+.wrap{max-width:640px;margin:0 auto;padding:18px 16px 120px}
+.cond{font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif}
+
+/* hero */
+h1{font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif;font-weight:800;font-size:clamp(36px,10.5vw,54px);line-height:.95;margin:2px 0 14px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+.stat{background:var(--surface);border-radius:12px;padding:10px 12px;box-shadow:0 1px 3px var(--shadow);min-width:0}
+.stat small{display:block;color:var(--muted);font-size:13px}
+.stat b{display:block;font-weight:600;overflow-wrap:anywhere}
+.trackwrap{position:relative;padding-top:20px}
+.track{height:12px;border-radius:6px;background:var(--road);overflow:hidden}
+.fill{height:100%;width:calc(var(--p,0)*100%);background:var(--paint);transition:width .5s ease}
+.car{position:absolute;top:0;left:calc(10px + (100% - 20px)*var(--p,0));transform:translateX(-50%);font-size:20px;line-height:1;transition:left .5s ease}
+.count{margin:8px 0 0;font-weight:600}
+.count span{color:var(--muted);font-weight:400}
+
+/* banner */
+.next{background:var(--green);color:var(--onGreen);border-radius:16px;padding:16px;margin:18px 0}
+.next small{display:block;font-weight:600;opacity:.92}
+.next strong{display:block;font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif;font-size:38px;font-weight:800;line-height:1.05}
+.next .dist{font-size:20px;font-weight:600;margin:2px 0 6px}
+.next ul{list-style:none;margin:0 0 12px;padding:0;font-size:16px}
+.next .fine{font-size:13px;opacity:.9;margin:8px 0 0}
+.next.finished{background:var(--paint);color:#1D2024}
+.next .linkish{color:inherit;text-decoration:underline;background:none;border:0;padding:0;font-weight:600}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;padding:6px 16px;border-radius:12px;border:2px solid var(--road);background:transparent;text-decoration:none;font-weight:600;font-size:16px;color:var(--ink)}
+.btn.primary{background:var(--paint);border-color:var(--paint);color:#1D2024}
+.btn.small{min-height:40px;padding:2px 12px;font-size:15px}
+.btn.big{min-height:58px;font-size:20px;width:100%;font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif;font-weight:700;letter-spacing:.3px}
+.btn.danger{border-color:var(--danger);color:var(--danger)}
+.next .btn:not(.primary){border-color:var(--onGreen);color:var(--onGreen)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.stack{display:grid;gap:8px}
+
+/* here panel */
+.here{background:var(--surface);border:3px solid var(--paint);border-radius:16px;padding:14px;margin-bottom:18px}
+.here h2{font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif;font-size:32px;margin:0;line-height:1.05}
+.here p{margin:2px 0 12px;color:var(--muted)}
+
+/* section heads */
+.sh{font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif;font-weight:700;font-size:24px;margin:22px 0 8px}
+.tl{list-style:none;margin:0;padding:0;background:var(--surface);border-radius:14px;box-shadow:0 1px 3px var(--shadow)}
+.tl li{display:flex;align-items:center;gap:10px;padding:0}
+.tl button{flex:1;display:flex;align-items:center;gap:10px;min-height:52px;padding:6px 14px;border:0;background:transparent;text-align:left;font-size:18px;font-weight:600;border-radius:14px}
+.tl .ic{width:26px;text-align:center}
+.tl .done{color:var(--muted)}
+.tag{margin-left:auto;font-size:13px;font-weight:600;background:var(--paint);color:#1D2024;padding:2px 10px;border-radius:999px;white-space:nowrap}
+.tag.g{background:var(--green);color:var(--onGreen)}
+.qa{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+
+/* route */
+.dayhead{margin:26px 0 10px;padding:12px 14px;background:var(--road);color:#fff;border-radius:14px}
+:root[data-theme="dark"] .dayhead{background:#2A2E33}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .dayhead{background:#2A2E33}}
+.dayhead .dn{font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif;font-weight:800;font-size:28px;color:var(--paint)}
+.dayhead .dr{font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif;font-weight:700;font-size:24px;margin-left:8px}
+.dayhead .dm{font-size:14px;margin-top:4px;display:grid;gap:2px;opacity:.95}
+.dayhead .ok{display:inline-block;background:var(--paint);color:#1D2024;font-weight:700;border-radius:999px;padding:0 10px;font-size:13px;margin-left:6px}
+.route{list-style:none;margin:0;padding:0}
+.stop{position:relative;padding-left:56px;padding-bottom:12px}
+.stop::before{content:"";position:absolute;left:12px;top:0;bottom:0;width:12px;background:var(--road)}
+.stop::after{content:"";position:absolute;left:17px;top:0;bottom:0;width:2px;background:repeating-linear-gradient(to bottom,var(--paint) 0 8px,transparent 8px 16px)}
+.stop:first-child::before,.stop:first-child::after{top:22px}
+.stop:last-child::before,.stop:last-child::after{bottom:calc(100% - 22px)}
+.stop.optional::before,.stop.optional::after{display:none}
+.check{position:absolute;left:0;top:4px;width:38px;height:38px;border-radius:50%;border:3px solid var(--road);background:var(--surface);z-index:1;display:grid;place-items:center;padding:0}
+.check svg{width:18px;height:18px;opacity:0;transition:opacity .15s}
+.stop.done .check{background:var(--paint);border-color:var(--paint)}
+.stop.done .check svg{opacity:1}
+.stop.next-stop .check{border-color:var(--green);box-shadow:0 0 0 4px color-mix(in srgb,var(--green) 25%,transparent)}
+.card{background:var(--surface);border-radius:14px;box-shadow:0 1px 3px var(--shadow);overflow:hidden}
+.stop.next-stop .card{outline:2px solid var(--green)}
+.head{width:100%;display:flex;align-items:center;gap:10px;text-align:left;background:transparent;border:0;padding:12px 14px;min-height:56px}
+.head .t{flex:1;min-width:0}
+.name{font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif;font-weight:700;font-size:26px;line-height:1.1;display:block}
+.stop.done .name{color:var(--muted);text-decoration:line-through;text-decoration-thickness:2px}
+.hint{display:block;color:var(--muted);font-size:14px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.chip{display:inline-flex;align-items:center;gap:6px;background:var(--chip);border-radius:999px;padding:2px 10px;font-size:13px;font-weight:500}
+.chip.rec{background:var(--green);color:var(--onGreen)}
+.chip.care{background:var(--paint);color:#1D2024}
+.chip.avoid{background:var(--danger);color:#fff}
+:root[data-theme="dark"] .chip.avoid{color:#2B0A08}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .chip.avoid{color:#2B0A08}}
+.chev{width:20px;height:20px;flex:none;transition:transform .2s;color:var(--muted)}
+.head[aria-expanded="true"] .chev{transform:rotate(180deg)}
+.detail{padding:0 14px 14px;border-top:1px solid var(--line)}
+.detail[hidden]{display:none}
+.place{padding:12px 0;border-bottom:1px solid var(--line)}
+.place:last-of-type{border-bottom:0}
+.place .pn{font-weight:600;font-size:17px}
+.place .pnote,.pdinfo{color:var(--muted);font-size:14px}
+.pdinfo div{margin-top:2px}
+.acts{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+.seg{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.seg button{min-height:40px;padding:2px 10px;border-radius:10px;border:2px solid var(--line);background:transparent;font-size:14px;font-weight:600}
+.seg button[aria-pressed="true"]{background:var(--paint);border-color:var(--paint);color:#1D2024}
+.empty{color:var(--muted);padding:12px 0 4px;margin:0}
+.sub-h{font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif;font-weight:700;font-size:19px;margin:14px 0 4px}
+.quick{display:flex;gap:8px;margin-top:8px}
+.quick input{flex:1;min-width:0}
+input[type=text],input[type=number],input[type=tel],textarea,select{width:100%;background:var(--bg);border:2px solid var(--line);border-radius:10px;padding:10px 12px;min-height:44px}
+textarea{min-height:84px;resize:vertical}
+.mini-note{background:var(--bg);border-radius:10px;padding:8px 12px;margin-top:8px;font-size:15px}
+.mini-note small{color:var(--muted);display:block}
+details.d{margin-top:10px}
+details.d summary{min-height:44px;display:flex;align-items:center;font-weight:600;cursor:pointer}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.fld{display:block;margin-bottom:8px}
+.fld span{display:block;font-weight:600;font-size:14px;margin-bottom:3px}
+.sw{display:flex;align-items:center;gap:10px;min-height:44px;margin-top:8px;font-weight:500}
+.sw input{width:24px;height:24px;accent-color:var(--green)}
+.optional-h{margin:24px 0 8px;color:var(--muted);font-weight:600}
+
+/* forms / cards */
+.form{background:var(--surface);border-radius:14px;padding:16px;box-shadow:0 1px 3px var(--shadow);display:grid;gap:12px;margin-bottom:12px}
+.form h2,.panel h2{font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif;font-size:26px;margin:0}
+.panel{background:var(--surface);border-radius:14px;padding:16px;box-shadow:0 1px 3px var(--shadow);margin-bottom:12px}
+label.l{font-weight:600;display:block;margin-bottom:4px}
+.cats{display:flex;flex-wrap:wrap;gap:8px;border:0;padding:0;margin:0}
+.cats legend{font-weight:600;margin-bottom:6px;padding:0}
+.cats label{position:relative}
+.cats input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
+.cats span{display:inline-block;padding:8px 14px;border-radius:999px;border:2px solid var(--line);font-weight:500;min-height:40px}
+.cats input:checked + span{background:var(--paint);border-color:var(--paint);color:#1D2024}
+.cats input:focus-visible + span{outline:3px solid var(--paint);outline-offset:2px}
+.filter{display:flex;align-items:center;gap:10px;margin:22px 0 10px}
+.filter h2{font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif;font-size:26px;margin:0;flex:1}
+.filter select{width:auto;max-width:55%}
+.note{background:var(--surface);border-radius:14px;padding:12px 14px;margin-bottom:10px;box-shadow:0 1px 3px var(--shadow)}
+.note .meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:6px}
+.note .meta .when{color:var(--muted);font-size:13px;margin-left:auto}
+.note p{margin:0 0 8px;white-space:pre-wrap;overflow-wrap:anywhere}
+
+/* EV */
+.big-n{font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif;font-weight:800;font-size:34px;line-height:1}
+.evgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.evgrid div{background:var(--bg);border-radius:12px;padding:10px 12px}
+.evgrid small{display:block;color:var(--muted);font-size:13px}
+.note-s{color:var(--muted);font-size:14px;margin:4px 0 0}
+.log{background:var(--surface);border-radius:14px;padding:12px 14px;margin-bottom:10px;box-shadow:0 1px 3px var(--shadow)}
+.log .lh{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.log .lh b{font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif;font-size:22px}
+.pct{font-weight:600}
+
+/* checklist */
+.ckg{margin-bottom:14px}
+.ckl{list-style:none;margin:0;padding:0;background:var(--surface);border-radius:14px;box-shadow:0 1px 3px var(--shadow);overflow:hidden}
+.cki{display:flex;align-items:center;border-bottom:1px solid var(--line)}
+.cki:last-child{border-bottom:0}
+.cki label{flex:1;display:flex;align-items:center;gap:12px;min-height:54px;padding:6px 14px;font-size:18px;cursor:pointer}
+.cki input{width:26px;height:26px;accent-color:var(--green);flex:none}
+.cki input:checked + span{color:var(--muted);text-decoration:line-through}
+.cki button.x{min-width:48px;min-height:48px;border:0;background:transparent;color:var(--muted);font-size:20px}
+
+/* journal */
+.stars{display:flex;gap:4px;margin:4px 0 10px}
+.stars button{min-width:48px;min-height:48px;border:0;background:transparent;font-size:30px;line-height:1;color:var(--line)}
+.stars button.on{color:var(--paint)}
+.photos{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.photos figure{position:relative;margin:0;width:96px;height:96px}
+.photos img{width:100%;height:100%;object-fit:cover;border-radius:10px;display:block}
+.photos figure button{position:absolute;top:2px;right:2px;min-width:36px;min-height:36px;border-radius:50%;border:0;background:rgba(0,0,0,.65);color:#fff;font-size:16px}
+.filebtn{position:relative;overflow:hidden}
+.filebtn input{position:absolute;inset:0;opacity:0;width:100%;cursor:pointer}
+
+.ms{fill:var(--surface);vector-effect:non-scaling-stroke;stroke:var(--road);stroke-width:1.2;cursor:pointer}
+.ms.on{fill:var(--green);fill-opacity:.8}
+.ms.side{stroke-dasharray:4 3}
+.mt{font:700 10px 'Barlow Condensed',Arial,sans-serif;fill:var(--ink);pointer-events:none}
+.mroute{fill:none;stroke:var(--paint);stroke-width:3px;stroke-dasharray:7 6;stroke-linejoin:round;pointer-events:none;vector-effect:non-scaling-stroke}
+.mcase{fill:none;stroke:var(--road);stroke-width:7px;stroke-linejoin:round;stroke-linecap:round;pointer-events:none;vector-effect:non-scaling-stroke}
+.grat line{stroke:var(--line);stroke-width:.7px;opacity:.8;vector-effect:non-scaling-stroke}
+.mt,.sl,.dl{stroke:var(--surface);paint-order:stroke;stroke-linejoin:round;pointer-events:none}
+.sl{font:600 12px 'Barlow','Segoe UI',Arial,sans-serif;fill:var(--ink)}
+.dl{font:600 10px 'Barlow','Segoe UI',Arial,sans-serif;fill:var(--muted)}
+.mapctl{position:absolute;top:8px;right:8px;display:grid;gap:6px}
+.mapctl button{width:46px;height:46px;border-radius:12px;border:2px solid var(--road);background:var(--surface);font-size:24px;font-weight:700;line-height:1;padding:0}
+.mapctl .sm{font-size:12px}
+.mstop{fill:var(--surface);stroke:var(--road);stroke-width:2;cursor:pointer}
+.mstop.done{fill:var(--paint)}
+.me{fill:#2F7BFF;stroke:#fff;stroke-width:2.5;pointer-events:none}
+.prov{display:inline-block;background:var(--green);color:var(--onGreen);font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif;font-weight:800;font-size:22px;line-height:1.2;padding:2px 12px;border-radius:8px;margin-bottom:6px}
+.chip.prov{background:var(--green);color:var(--onGreen);font-weight:600}
+.units{margin-top:10px;padding:10px 12px;border-radius:10px;background:var(--bg);border-left:4px solid var(--green);font-size:15px}
+/* nav */
+.nav{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--surface);border-top:1px solid var(--line);display:flex;padding:4px 4px calc(4px + env(safe-area-inset-bottom,0px))}
+.nav button{flex:1;min-height:58px;border:0;background:transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;border-radius:10px;font-size:12px;font-weight:600;color:var(--muted);padding:2px}
+.nav .ic{font-size:22px;line-height:1}
+.nav button[aria-current="page"]{color:var(--ink);background:var(--chip);box-shadow:inset 0 3px 0 var(--paint)}
+.foot{margin-top:28px;padding-top:14px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+.foot p{margin:0 0 8px}
+[hidden]{display:none !important}
+@media (prefers-reduced-motion: reduce){*{transition:none !important;scroll-behavior:auto !important}}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+<nav class="nav" id="nav" aria-label="Main sections"></nav>
+
+<script>
+(function(){
+'use strict';
+
+/* ======================================================================
+   ROUTE DATA  -  edit this block to change the trip.
+   - km    : distance from the previous main stop in km (null = not set)
+   - mins  : driving time from the previous main stop in minutes (null = not set)
+   - overnight : true if the family sleeps at this stop (this decides the trip days)
+   - places: k is a list of 'charge' | 'eat' | 'stay' | 'wash'
+             optional fields: provider, loc, plugs, nearby, phone, phoneLabel, note, nomap
+   - pre / optional : not part of the main route progress
+   Distances (km) and driving times (mins) below are approximate road figures, not live data.
+   Anything left as null is
+   simply not shown; you can also type them in inside the app.
+   ====================================================================== */
+var TRIP={from:'Puttaparthi',to:'Delhi'};
+var STOPS=[
+  {id:'blr',name:'Bangalore',pre:true,hint:'Before the trip',places:[]},
+  {id:'ptp',name:'Puttaparthi',hint:'Trip start',km:null,mins:null,places:[]},
+  {id:'knl',name:'Kurnool',km:225,mins:255,places:[
+    {n:'Lepakshi Multi-cuisine and Charge Zone',k:['eat','charge']}
+  ]},
+  {id:'hyd',name:'Hyderabad',km:215,mins:205,places:[
+    {n:'Jio charger, Shamshabad',k:['charge'],provider:'Jio',note:'Written as "Shamshadpur" in the original list'},
+    {n:'Glida charger, airport area',k:['charge'],provider:'Glida',loc:'Airport area'}
+  ]},
+  {id:'adb',name:'Adilabad',km:296,mins:252,overnight:true,places:[
+    {n:'Hotel Comfort Stay',k:['stay']}
+  ]},
+  {id:'hng',name:'Hinganghat',km:120,mins:105,places:[
+    {n:'Vithal Kamath',k:['eat','charge'],provider:'Statiq',note:'Statiq charger'}
+  ]},
+  {id:'ngp',name:'Nagpur',km:75,mins:65,places:[
+    {n:'Adani charger, near Swag Hotel',k:['charge'],provider:'Adani'},
+    {n:'Pride Hotel',k:['stay'],note:'Listed next to the Adani charger'},
+    {n:'Swagstay Hotel',k:['stay'],phone:'+919209403409',phoneLabel:'+91 92094 03409'}
+  ]},
+  {id:'seo',name:'Seoni',km:125,mins:120,places:[
+    {n:'Cube Eatery',k:['eat','charge'],provider:'Statiq',note:'Statiq charger'}
+  ]},
+  {id:'jbp',name:'Jabalpur',km:150,mins:150,places:[
+    {n:'Statiq charger',k:['charge'],provider:'Statiq'},
+    {n:'Mahindra dealership',k:['charge'],provider:'Mahindra'},
+    {n:'Star (name cut off in the original note)',k:['charge'],note:'Check the original note for the full name',nomap:true},
+    {n:'Wow Hotels 4 You',k:['stay'],note:'Sanjay Jain',phone:'+918818936565',phoneLabel:'+91 88189 36565'}
+  ]},
+  {id:'sgr',name:'Sagar',km:175,mins:180,overnight:true,places:[
+    {n:'Paradise Hotel',k:['stay','charge'],provider:'Jio Pulse',note:'Jio Pulse charger'},
+    {n:'The Grand Palace Hotel',k:['stay']}
+  ]},
+  {id:'jhs',name:'Jhansi',km:175,mins:180,places:[
+    {n:'JMK Motors (Tata Motors)',k:['charge'],provider:'Tata Motors'}
+  ]},
+  {id:'gwl',name:'Gwalior',km:100,mins:105,places:[
+    {n:'Statiq charger, Dabra',k:['charge'],provider:'Statiq',loc:'Dabra'},
+    {n:'Silver Oak',k:['stay'],phone:'+919343281208',phoneLabel:'+91 93432 81208'}
+  ]},
+  {id:'agr',name:'Agra',km:120,mins:120,places:[
+    {n:'Courtyard by Marriott',k:['charge','stay'],note:'Very friendly'},
+    {n:'Hotel Sahib',k:['stay']}
+  ]},
+  {id:'noi',name:'Noida',km:165,mins:150,places:[
+    {n:'Statiq EV, inside a society',k:['charge'],provider:'Statiq',note:'The guard said to go around and he would let us in'}
+  ]},
+  {id:'del',name:'Delhi',hint:'Destination',km:25,mins:45,places:[]},
+  {id:'pat',name:'Patiala',optional:true,hint:'Optional side trip',places:[
+    {n:'Yashoda Hyundai',k:['charge']}
+  ]}
+];
+var CHECKLIST=[
+  {g:'Car',icon:'🚗',items:['Charging cable','Emergency kit','Tyre/inflation equipment','Car documents','Insurance','Spare key']},
+  {g:'Family',icon:'👨‍👩‍👧',items:['Water','Snacks','Medicines','Power banks','Phone chargers','Important documents']},
+  {g:'Dog',icon:'🐶',items:['Dog food','Water bowl','Leash','Waste bags','Dog supplies']}
+];
+/* ====================== end of route data ====================== */
+
+var KEY='ptp-delhi-roadtrip-v2', OLDKEY='blr-delhi-roadtrip-v1';
+var KINDS={charge:{i:'⚡',l:'Charger'},eat:{i:'🍴',l:'Food'},stay:{i:'🛏️',l:'Stay'},wash:{i:'🚻',l:'Washroom'}};
+var CATS=[['Washroom','🚻'],['Food','🍴'],['Charger','⚡'],['Stay','🛏️'],['Road','🛣️'],['Other','📝']];
+var CATICON={};CATS.forEach(function(c){CATICON[c[0]]=c[1]});
+var RATES={rec:'👍 Recommended',care:'⚠️ Be careful',avoid:'👎 Avoid next time'};
+var STATUS=[['ok','✅','Worked perfectly'],['slow','⚠️','Slow/problematic'],['bad','❌',"Didn't work"],['unk','❓','Not tested']];
+var JFIELDS=[['food','Best food'],['charger','Best charger'],['funny','Funniest moment'],['road','Road conditions']];
+
+/* ---------- state ---------- */
+function defState(){return{done:{},here:null,notes:[],ov:{},pd:{},custom:{},
+  ev:{before:'',after:'',kmNext:'',range:'',buffer:'15',log:[],draft:''},
+  ck:{checked:{},custom:[]},jr:{},set:{speed:'',kmUnit:'7'},map:{gps:{},ov:{}}}}
+function load(){
+  var s=defState();
+  try{
+    var r=localStorage.getItem(KEY);
+    if(r){
+      var p=JSON.parse(r);
+      Object.keys(p).forEach(function(k){
+        if(p[k]&&typeof p[k]==='object'&&!Array.isArray(p[k])&&s[k]&&typeof s[k]==='object'&&!Array.isArray(s[k])) Object.assign(s[k],p[k]);
+        else s[k]=p[k];
+      });
+      return s;
+    }
+    var o=localStorage.getItem(OLDKEY);
+    if(o){var q=JSON.parse(o); if(q.done) s.done=q.done; if(Array.isArray(q.notes)) s.notes=q.notes;}
+  }catch(e){}
+  return s;
+}
+var state=load();
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}
+var saveT=null;function saveSoon(){clearTimeout(saveT);saveT=setTimeout(save,350)}
+
+var ui={tab:'today',open:{},hv:null,noteFilter:'all',pos:null,sel:null,watch:null,mapMsg:'',vz:1,vx:182.5,vy:287,dragged:false};
+var $=function(s,r){return (r||document).querySelector(s)};
+var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function num(v){if(v===''||v==null)return null;var n=Number(v);return isNaN(n)?null:n}
+function enc(s){return encodeURIComponent(s)}
+function nowId(p){return p+Date.now().toString(36)+Math.floor(Math.random()*1000)}
+function fmtDate(ts){try{return new Date(ts).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'})}catch(e){return ''}}
+function fmtKm(n){return Math.round(n).toLocaleString('en-IN')+' km'}
+function fmtMins(m){var h=Math.floor(m/60),r=Math.round(m%60);return '~'+(h?h+' hr':'')+(h&&r?' ':'')+(r?r+' min':(h?'':'0 min'))}
+
+/* ---------- route helpers ---------- */
+function stopById(id){for(var i=0;i<STOPS.length;i++)if(STOPS[i].id===id)return STOPS[i];return null}
+var MAIN=STOPS.filter(function(s){return !s.optional&&!s.pre});
+var SIDE=STOPS.filter(function(s){return s.optional});
+var PRE=STOPS.filter(function(s){return s.pre});
+function mainIdx(id){for(var i=0;i<MAIN.length;i++)if(MAIN[i].id===id)return i;return -1}
+function ovOf(id){return state.ov[id]||{}}
+function segKm(s){var o=ovOf(s.id);var v=(o.km!==undefined&&o.km!=='')?o.km:s.km;return num(v)}
+function segMins(s){
+  var o=ovOf(s.id);var v=(o.mins!==undefined&&o.mins!=='')?o.mins:s.mins;v=num(v);
+  if(v!=null)return v;
+  var km=segKm(s),sp=num(state.set.speed);
+  if(km!=null&&sp&&sp>0)return Math.round(km/sp*60);
+  return null;
+}
+function segText(s){
+  var p=[],k=segKm(s),m=segMins(s);
+  if(k!=null)p.push(fmtKm(k));
+  if(m!=null)p.push(fmtMins(m));
+  return p.join(' · ');
+}
+function isOvernight(s){var o=ovOf(s.id);return o.over!==undefined?o.over:!!s.overnight}
+function nextStop(){for(var i=0;i<MAIN.length;i++)if(!state.done[MAIN[i].id])return MAIN[i];return null}
+function placesOf(s){
+  var a=(s.places||[]).map(function(p,i){return Object.assign({key:s.id+':'+i},p)});
+  (state.custom[s.id]||[]).forEach(function(c){a.push({key:s.id+':c'+c.id,n:c.n,k:[c.k],phone:c.phone||'',custom:true,cid:c.id})});
+  return a;
+}
+function pdOf(key){return state.pd[key]||{}}
+function pget(p,f){var d=pdOf(p.key);return d[f]!==undefined&&d[f]!==''?d[f]:(p[f]||'')}
+function phoneTel(p){return String(pget(p,'phone')||'').replace(/[^\d+]/g,'')}
+function phoneLabel(p){var d=pdOf(p.key);return d.phone||p.phoneLabel||p.phone||''}
+function ofKind(s,k){return placesOf(s).filter(function(p){return p.k.indexOf(k)>=0})}
+function hasKind(s,k){
+  if(ofKind(s,k).length)return true;
+  if(k==='wash')return state.notes.some(function(n){return n.stop===s.id&&n.cat==='Washroom'});
+  return false;
+}
+function mapUrl(p,s){return 'https://www.google.com/maps/search/?api=1&query='+enc(p.n+' '+s.name)}
+function stopMapUrl(s){return 'https://www.google.com/maps/search/?api=1&query='+enc(s.name)}
+function navTarget(s){
+  var ps=placesOf(s).filter(function(p){return !p.nomap});
+  var c=ps.filter(function(p){return p.k.indexOf('charge')>=0})[0]||ps[0];
+  return c?{label:c.n,q:c.n+' '+s.name}:{label:s.name,q:s.name};
+}
+function navUrl(s){return 'https://www.google.com/maps/dir/?api=1&destination='+enc(navTarget(s).q)+'&travelmode=driving'}
+function notesFor(id){return state.notes.filter(function(n){return n.stop===id})}
+function stopName(id){var s=stopById(id);return s?s.name:'General'}
+
+/* days are built from the "overnight" stops */
+function buildDays(){
+  var days=[],cur=[],prevName=MAIN[0].name;
+  MAIN.forEach(function(s,i){
+    cur.push(s);
+    if(isOvernight(s)||i===MAIN.length-1){
+      days.push({n:days.length+1,stops:cur,end:s,start:prevName});
+      prevName=s.name;cur=[];
+    }
+  });
+  return days;
+}
+function dayOfStop(days,id){for(var i=0;i<days.length;i++)for(var j=0;j<days[i].stops.length;j++)if(days[i].stops[j].id===id)return days[i];return days[days.length-1]}
+function currentDay(days){var nx=nextStop();return nx?dayOfStop(days,nx.id):days[days.length-1]}
+function dayDone(d){return d.stops.every(function(s){return state.done[s.id]})}
+function dayTotals(d){
+  var km=0,kn=0,mn=0,mc=0,unk=0;
+  d.stops.forEach(function(s,i){
+    if(d.n===1&&i===0)return; /* trip start has no incoming leg */
+    var k=segKm(s),m=segMins(s);
+    if(k!=null){km+=k;kn++}else unk++;
+    if(m!=null){mn+=m;mc++}
+  });
+  return{km:kn?km:null,mins:mc?mn:null,partial:unk>0&&(kn>0||mc>0)};
+}
+function stayLine(s){
+  var st=ofKind(s,'stay')[0];
+  return st?s.name+' · '+st.n:s.name+' (no hotel saved)';
+}
+function totals(){
+  var tot=0,done=0,known=0,unk=0;
+  MAIN.forEach(function(s,i){
+    if(i===0)return;
+    var k=segKm(s);
+    if(k!=null){tot+=k;known++;if(state.done[s.id])done+=k}else unk++;
+  });
+  return{tot:tot,done:done,known:known,unk:unk};
+}
+function chargerAhead(){
+  var nx=nextStop();if(!nx)return null;
+  var start=mainIdx(nx.id);
+  var h=state.here&&mainIdx(state.here)>=0?mainIdx(state.here):-1;
+  if(h>=0&&!state.done[state.here])start=h+1;
+  var total=0,unknown=false;
+  for(var i=start;i<MAIN.length;i++){
+    var k=segKm(MAIN[i]);
+    if(k==null)unknown=true;else total+=k;
+    if(ofKind(MAIN[i],'charge').length)return{stop:MAIN[i],km:unknown?null:total};
+  }
+  return null;
+}
+
+function kpu(){var v=num(state.set.kmUnit);return v&&v>0?v:7}
+function unitsTxt(km){return '~'+Math.ceil(km/kpu())+' units'}
+function chargerAfterStop(s){
+  var i=mainIdx(s.id);if(i<0)return null;
+  var tot=0,unk=false;
+  for(var j=i+1;j<MAIN.length;j++){
+    var k=segKm(MAIN[j]);if(k==null)unk=true;else tot+=k;
+    if(ofKind(MAIN[j],'charge').length)return{stop:MAIN[j],km:unk?null:tot};
+  }
+  return null;
+}
+
+/* ---------- views ---------- */
+var CHECK='<svg viewBox="0 0 24 24" fill="none" stroke="#1D2024" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg>';
+var CHEV='<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>';
+var TABS=[['today','🏠','Today'],['route','🛣️','Route'],['map','🗺️','Map'],['ev','⚡','EV'],['list','🧳','Checklist'],['notes','📝','Notes'],['journal','📸','Journal']];
+
+function renderNav(){
+  $('#nav').innerHTML=TABS.map(function(t){
+    return '<button type="button" data-act="tab" data-tab="'+t[0]+'"'+(ui.tab===t[0]?' aria-current="page"':'')+'><span class="ic" aria-hidden="true">'+t[1]+'</span>'+t[2]+'</button>';
+  }).join('');
+}
+function footHtml(){return '<div class="foot"><p>Progress and notes are saved on this device.</p></div>'}
+
+function progressHtml(){
+  var done=MAIN.filter(function(s){return state.done[s.id]}).length;
+  var p=done/MAIN.length;
+  var t=totals();
+  var kmLine=t.known?fmtKm(t.done)+' / '+fmtKm(t.tot)+(t.unk?' (some distances not set)':''):'';
+  return '<div class="trackwrap" style="--p:'+p.toFixed(3)+'"><span class="car" aria-hidden="true">🚗</span><div class="track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="'+Math.round(p*100)+'" aria-label="Trip progress"><div class="fill"></div></div></div>'+
+    '<p class="count">'+Math.round(p*100)+'% · '+done+' / '+MAIN.length+' stops completed'+(kmLine?' <span>· '+kmLine+'</span>':'')+'</p>';
+}
+
+function renderToday(){
+  var days=buildDays(),cd=currentDay(days),nx=nextStop(),t=totals(),ca=chargerAhead();
+  var allDone=!nx;
+  var kmStat=t.known?fmtKm(t.done)+' / '+fmtKm(t.tot)+(t.unk?' *':''):'Add distances to see km';
+  var chStat=allDone?'Trip complete':ca?(ca.stop.name+(ca.km!=null?' · '+fmtKm(ca.km)+' · '+unitsTxt(ca.km):' · distance not set')):'No charger saved ahead';
+  var tonight=allDone?'You made it to '+TRIP.to:(cd.end.id===MAIN[MAIN.length-1].id?'Arrive in '+TRIP.to:stayLine(cd.end));
+  var h='<h1>'+esc(TRIP.from)+' → '+esc(TRIP.to)+'</h1>'+
+    '<div class="stats">'+
+      '<div class="stat"><small>🚗 Trip day</small><b>Day '+cd.n+' of '+days.length+'</b></div>'+
+      '<div class="stat"><small>📍 Distance done</small><b>'+esc(kmStat)+'</b></div>'+
+      '<div class="stat"><small>⚡ Next charger</small><b>'+esc(chStat)+'</b></div>'+
+      '<div class="stat"><small>🛏️ Tonight</small><b>'+esc(tonight)+'</b></div>'+
+    '</div>'+progressHtml();
+
+  if(nx){
+    var hereNow=state.here===nx.id;
+    var seg=segText(nx),idx=mainIdx(nx.id);
+    var lines=placesOf(nx).slice(0,4).map(function(p){
+      var pv=p.k.indexOf('charge')>=0?pget(p,'provider'):'';
+      var nm=(pv&&p.n.toLowerCase().indexOf(pv.toLowerCase())<0)?pv+' · '+p.n:p.n;
+      return '<li>'+KINDS[p.k[0]].i+' '+esc(nm)+'</li>';
+    }).join('');
+    h+='<section class="next" aria-label="Next stop"><small>'+(hereNow?"You're here":'Next stop')+'</small>'+
+      '<strong>'+esc(nx.name)+'</strong>'+
+      '<div class="dist">'+(idx>0?(seg?esc(seg):'<button type="button" class="linkish" data-act="gostop" data-id="'+nx.id+'">Distance not set. Add it</button>'):esc(nx.hint||''))+'</div>'+
+      (lines?'<ul>'+lines+'</ul>':'<ul><li>No places saved yet</li></ul>')+
+      '<div class="stack"><a class="btn primary big" target="_blank" rel="noopener" href="'+navUrl(nx)+'" aria-label="Navigate to '+esc(navTarget(nx).label)+' in Google Maps">🗺️ Navigate</a>'+
+      (hereNow?'':'<button class="btn big" type="button" data-act="here" data-id="'+nx.id+'">📍 We\'re here</button>')+'</div>'+
+      '<p class="fine">Navigating to: '+esc(navTarget(nx).label)+'. Times are estimates, not live traffic.</p></section>';
+  } else {
+    h+='<section class="next finished"><strong>Trip complete</strong><div class="dist">Every stop is ticked. Add the memories in the Journal.</div></section>';
+  }
+
+  if(state.here){
+    var hs=stopById(state.here);
+    if(hs&&!state.done[hs.id])h+=herePanel(hs);
+  }
+
+  h+='<h2 class="sh">Today · Day '+cd.n+': '+esc(cd.start)+' → '+esc(cd.end.name)+'</h2><ul class="tl">'+
+    cd.stops.map(function(s){
+      var d=!!state.done[s.id],isHere=state.here===s.id&&!d,isNext=nx&&nx.id===s.id;
+      return '<li><button type="button" data-act="gostop" data-id="'+s.id+'" class="'+(d?'done':'')+'"><span class="ic" aria-hidden="true">'+(d?'✓':isHere?'📍':'○')+'</span>'+esc(s.name)+
+        (isHere?'<span class="tag">YOU ARE HERE</span>':isNext?'<span class="tag g">NEXT</span>':'')+'</button></li>';
+    }).join('')+'</ul>';
+
+  h+='<h2 class="sh">Quick actions</h2><div class="qa">'+
+    '<button class="btn big" type="button" data-act="tab" data-tab="ev">⚡ EV</button>'+
+    '<button class="btn big" type="button" data-act="tab" data-tab="list">🧳 Checklist</button>'+
+    '<button class="btn big" type="button" data-act="tab" data-tab="notes">📝 Notes</button>'+
+    '<button class="btn big" type="button" data-act="tab" data-tab="journal">📸 Journal</button></div>';
+
+  h+='<details class="d"><summary>Trip settings</summary><div class="panel">'+
+    '<label class="fld"><span>Km per unit of charge</span><input type="number" inputmode="decimal" min="1" data-set="kmUnit" value="'+esc(state.set.kmUnit)+'"></label>'+
+    '<label class="fld"><span>Average driving speed (km/h)</span><input type="number" inputmode="decimal" min="1" data-set="speed" value="'+esc(state.set.speed)+'" placeholder="Optional"></label>'+
+    '<p class="note-s">If you set a speed, any leg with a distance but no time gets an estimated time. Leave it empty to show only the times you enter.</p>'+
+    '<div class="acts"><button class="btn small" type="button" data-act="resetticks">Clear all stop ticks</button></div>'+
+    '</div></details>'+footHtml();
+  return h;
+}
+
+function herePanel(s){
+  var kinds=['charge','eat','stay'];
+  var btns='<button class="btn primary big" type="button" data-act="visit">✓ Mark visited</button><div class="grid2">';
+  btns+='<button class="btn big" type="button" data-act="hv" data-k="charge" aria-pressed="'+(ui.hv==='charge')+'">⚡ Charging</button>';
+  if(ofKind(s,'eat').length)btns+='<button class="btn big" type="button" data-act="hv" data-k="eat" aria-pressed="'+(ui.hv==='eat')+'">🍴 Food</button>';
+  if(ofKind(s,'stay').length)btns+='<button class="btn big" type="button" data-act="hv" data-k="stay" aria-pressed="'+(ui.hv==='stay')+'">🛏️ Stay</button>';
+  btns+='<a class="btn big" target="_blank" rel="noopener" href="'+stopMapUrl(s)+'">🗺️ Open Maps</a></div>';
+  var sub='';
+  if(ui.hv&&kinds.indexOf(ui.hv)>=0){
+    var ps=ofKind(s,ui.hv);
+    sub='<div class="sub-h">'+KINDS[ui.hv].i+' '+KINDS[ui.hv].l+' at '+esc(s.name)+'</div>'+
+      (ps.length?ps.map(function(p){return placeHtml(p,s,{edit:false})}).join(''):'<p class="empty">No charger saved here yet. You can still log a charge.</p>');
+    if(ui.hv==='charge')sub+='<button class="btn primary big" type="button" data-act="logcharge" data-id="'+s.id+'">⚡ Log this charge</button>';
+  }
+  return '<section class="here" aria-label="You are here"><h2>📍 '+esc(s.name)+'</h2><p>You\'re here!</p><div class="stack">'+btns+'</div>'+sub+
+    '<div class="acts"><button class="btn small" type="button" data-act="unhere">Not here after all</button></div></section>';
+}
+
+function kindChips(p){return p.k.map(function(k){return '<span class="chip">'+KINDS[k].i+' '+KINDS[k].l+'</span>'}).join(' ')}
+function infoHtml(p){
+  var l=[];
+  var pr=pget(p,'provider'),loc=pget(p,'loc'),pl=pget(p,'plugs'),nb=pget(p,'nearby'),ph=phoneLabel(p);
+  if(loc)l.push('Location: '+esc(loc));
+  if(pl)l.push('Chargers: '+esc(pl));
+  if(nb)l.push('Nearby: '+esc(nb));
+  if(ph)l.push('Phone: '+esc(ph));
+  return l.map(function(x){return '<div>'+x+'</div>'}).join('');
+}
+function placeHtml(p,s,o){
+  var edit=!o||o.edit!==false;
+  var st=pdOf(p.key).status||'unk';
+  var tel=phoneTel(p),acts='';
+  if(tel)acts+='<a class="btn small primary" href="tel:'+tel+'" aria-label="Call '+esc(p.n)+'">📞 Call</a>';
+  if(!p.nomap)acts+='<a class="btn small" target="_blank" rel="noopener" href="'+mapUrl(p,s)+'" aria-label="Open '+esc(p.n)+' in Maps">🗺️ Open in Maps</a>';
+  var h='<div class="place">'+(p.k.indexOf('charge')>=0?'<div class="prov" data-pdprov="'+p.key+'">⚡ '+esc(pget(p,'provider')||'Provider not set')+'</div>':'')+'<div class="pn">'+esc(p.n)+'</div><div class="chips">'+kindChips(p)+'</div>'+
+    (p.note?'<div class="pnote">'+esc(p.note)+'</div>':'')+
+    '<div class="pdinfo" data-pdinfo="'+p.key+'">'+infoHtml(p)+'</div>';
+  if(p.k.indexOf('charge')>=0){
+    h+='<div class="seg" role="group" aria-label="Charger status for '+esc(p.n)+'">'+STATUS.map(function(x){
+      return '<button type="button" data-act="status" data-k="'+p.key+'" data-v="'+x[0]+'" aria-pressed="'+(st===x[0])+'">'+x[1]+' '+x[2]+'</button>';
+    }).join('')+'</div>';
+  }
+  if(acts)h+='<div class="acts">'+acts+'</div>';
+  if(edit){
+    var d=pdOf(p.key);
+    h+='<details class="d"><summary>Edit details</summary>'+
+      '<label class="fld"><span>Exact location</span><input type="text" data-pd="loc" data-k="'+p.key+'" value="'+esc(pget(p,'loc'))+'"></label>'+
+      (p.k.indexOf('charge')>=0?'<label class="fld"><span>Provider</span><input type="text" data-pd="provider" data-k="'+p.key+'" value="'+esc(pget(p,'provider'))+'"></label>'+
+      '<label class="fld"><span>Number / type of chargers</span><input type="text" data-pd="plugs" data-k="'+p.key+'" value="'+esc(pget(p,'plugs'))+'" placeholder="Example: 2 x CCS2 fast"></label>':'')+
+      '<label class="fld"><span>Nearby food, washroom or hotel</span><input type="text" data-pd="nearby" data-k="'+p.key+'" value="'+esc(pget(p,'nearby'))+'"></label>'+
+      '<label class="fld"><span>Phone number</span><input type="tel" data-pd="phone" data-k="'+p.key+'" value="'+esc(d.phone!==undefined?d.phone:(p.phoneLabel||p.phone||''))+'"></label>'+
+      (p.custom?'<button class="btn small danger" type="button" data-act="delplace" data-id="'+s.id+'" data-cid="'+p.cid+'">Remove this place</button>':'')+
+      '</details>';
+  }
+  return h+'</div>';
+}
+
+function stopChips(s){
+  var h='';
+  ['charge','eat','stay','wash'].forEach(function(k){
+    if(!hasKind(s,k))return;
+    if(k==='charge'){
+      var pv=[];ofKind(s,'charge').forEach(function(p){var v=pget(p,'provider');if(v&&pv.indexOf(v)<0)pv.push(v)});
+      h+='<span class="chip prov">⚡ '+esc(pv.length?pv.join(', '):'Charger')+'</span>';
+    } else h+='<span class="chip">'+KINDS[k].i+' '+KINDS[k].l+'</span>';
+  });
+  var nc=notesFor(s.id).length;
+  if(nc)h+='<span class="chip">📝 '+nc+(nc===1?' note':' notes')+'</span>';
+  return h?'<span class="chips">'+h+'</span>':'';
+}
+function stopHtml(s,nextId){
+  var done=!!state.done[s.id],isOpen=!!ui.open[s.id],main=mainIdx(s.id)>=0,idx=mainIdx(s.id);
+  var cls='stop'+(done?' done':'')+(s.id===nextId?' next-stop':'')+(main?'':' optional');
+  var hint=s.hint||'';
+  if(main&&idx>0){var sg=segText(s);if(sg)hint=sg+' from '+MAIN[idx-1].name}
+  var ps=placesOf(s),detail='';
+  if(main){
+    var qa='<a class="btn small primary" target="_blank" rel="noopener" href="'+navUrl(s)+'">🗺️ Navigate</a>';
+    var callP=ps.filter(function(p){return phoneTel(p)})[0];
+    if(callP)qa+='<a class="btn small" href="tel:'+phoneTel(callP)+'">📞 Call</a>';
+    [['charge','⚡ Charger'],['eat','🍴 Food'],['stay','🛏️ Hotel']].forEach(function(x){
+      var q=ps.filter(function(p){return p.k.indexOf(x[0])>=0&&!p.nomap})[0];
+      if(q)qa+='<a class="btn small" target="_blank" rel="noopener" href="'+mapUrl(q,s)+'">'+x[1]+'</a>';
+    });
+    if(state.here!==s.id&&!done)qa+='<button class="btn small" type="button" data-act="here" data-id="'+s.id+'">📍 We\'re here</button>';
+    detail+='<div class="acts" style="margin-top:12px">'+qa+'</div>';
+  }
+  detail+=ps.length?ps.map(function(p){return placeHtml(p,s)}).join(''):'<p class="empty">No places saved for this stop.</p>';
+  detail+='<details class="d"><summary>＋ Add a place</summary><div class="row2"><input type="text" data-newname="'+s.id+'" placeholder="Name" aria-label="New place name">'+
+    '<select data-newkind="'+s.id+'" aria-label="Kind of place"><option value="charge">⚡ Charger</option><option value="eat">🍴 Food</option><option value="stay">🛏️ Stay</option><option value="wash">🚻 Washroom</option></select></div>'+
+    '<input type="tel" style="margin-top:8px" data-newphone="'+s.id+'" placeholder="Phone (optional)" aria-label="Phone number"><div class="acts"><button class="btn small primary" type="button" data-act="addplace" data-id="'+s.id+'">Add place</button></div></details>';
+  if(main){
+    var o=ovOf(s.id),nxt=MAIN[idx+1];
+    if(idx>0){
+      detail+='<details class="d"><summary>Distance and time from '+esc(MAIN[idx-1].name)+'</summary><div class="row2">'+
+        '<label class="fld"><span>Distance (km)</span><input type="number" inputmode="decimal" min="0" data-ov="km" data-id="'+s.id+'" value="'+esc(o.km!==undefined?o.km:(s.km==null?'':s.km))+'"></label>'+
+        '<label class="fld"><span>Driving time (min)</span><input type="number" inputmode="numeric" min="0" data-ov="mins" data-id="'+s.id+'" value="'+esc(o.mins!==undefined?o.mins:(s.mins==null?'':s.mins))+'"></label></div>'+
+        '<p class="note-s">Your own estimates, not live traffic.</p></details>';
+    }
+    if(nxt){var nt=segText(nxt);detail+='<p class="note-s" style="margin-top:10px">To next stop, '+esc(nxt.name)+': '+(nt?esc(nt):'not set yet')+'</p>'}
+    var cn=chargerAfterStop(s);
+    if(cn)detail+='<div class="units">⚡ Next charger: <b>'+esc(cn.stop.name)+'</b> · '+(cn.km!=null?fmtKm(cn.km)+' · <b>'+unitsTxt(cn.km)+' needed</b> (at '+kpu()+' km per unit)':'distance not set')+'</div>';
+    if(idx<MAIN.length-1)detail+='<label class="sw"><input type="checkbox" data-over="'+s.id+'"'+(isOvernight(s)?' checked':'')+'> We sleep here tonight (ends the trip day)</label>';
+  }
+  var ns=notesFor(s.id);
+  if(ns.length)detail+='<div class="sub-h">Our notes</div>'+ns.map(function(n){
+    return '<div class="mini-note"><small>'+CATICON[n.cat]+' '+esc(n.cat)+(n.rate?' · '+RATES[n.rate]:'')+' · '+fmtDate(n.ts)+'</small>'+esc(n.text)+'</div>';
+  }).join('');
+  detail+='<div class="quick"><input type="text" data-quick="'+s.id+'" placeholder="Leave a note about this stop" aria-label="Note about '+esc(s.name)+'"><button class="btn small primary" type="button" data-act="quicknote" data-id="'+s.id+'">Add</button></div>';
+  return '<li class="'+cls+'" id="stop-'+s.id+'">'+
+    '<button class="check" type="button" role="checkbox" aria-checked="'+done+'" data-act="check" data-id="'+s.id+'" aria-label="Mark '+esc(s.name)+' as visited">'+CHECK+'</button>'+
+    '<div class="card"><button class="head" type="button" aria-expanded="'+isOpen+'" data-act="toggle" data-id="'+s.id+'">'+
+    '<span class="t"><span class="name">'+esc(s.name)+(state.here===s.id&&!done?' 📍':'')+'</span>'+(hint?'<span class="hint">'+esc(hint)+'</span>':'')+stopChips(s)+'</span>'+CHEV+'</button>'+
+    '<div class="detail"'+(isOpen?'':' hidden')+'>'+detail+'</div></div></li>';
+}
+
+function renderRoute(){
+  var days=buildDays(),nx=nextStop(),nid=nx?nx.id:null;
+  var h='<h1>Route</h1><p class="note-s" style="margin:-6px 0 4px">Tap a stop to open it. Times are estimates, not live traffic.</p>';
+  days.forEach(function(d){
+    var tt=dayTotals(d);
+    var chg=d.stops.filter(function(s){return hasKind(s,'charge')}).map(function(s){return s.name});
+    var eat=d.stops.filter(function(s){return hasKind(s,'eat')}).map(function(s){return s.name});
+    var meta=[];
+    meta.push('📍 Distance: '+(tt.km!=null?fmtKm(tt.km)+(tt.partial?' so far (some legs not set)':''):'not set'));
+    meta.push('⏱️ Driving: '+(tt.mins!=null?fmtMins(tt.mins)+(tt.partial?' so far':'')+' (estimate)':'not set'));
+    if(chg.length)meta.push('⚡ Charging: '+chg.join(', '));
+    if(eat.length)meta.push('🍴 Food: '+eat.join(', '));
+    meta.push(d.end.id===MAIN[MAIN.length-1].id?'🏁 Arrive in '+TRIP.to:'🛏️ Overnight: '+stayLine(d.end));
+    h+='<div class="dayhead"><div><span class="dn">Day '+d.n+'</span><span class="dr">'+esc(d.start)+' → '+esc(d.end.name)+'</span>'+(dayDone(d)?'<span class="ok">Complete</span>':'')+'</div>'+
+      '<div class="dm">'+meta.map(function(m){return '<span>'+esc(m)+'</span>'}).join('')+'</div></div>'+
+      '<ol class="route">'+d.stops.map(function(s){return stopHtml(s,nid)}).join('')+'</ol>';
+  });
+  if(SIDE.length)h+='<p class="optional-h">Optional side trips (not counted in progress)</p><ol class="route">'+SIDE.map(function(s){return stopHtml(s,null)}).join('')+'</ol>';
+  if(PRE.length)h+='<p class="optional-h">Before the trip</p><ol class="route">'+PRE.map(function(s){return stopHtml(s,null)}).join('')+'</ol>';
+  return h+footHtml();
+}
+
+/* ----- EV ----- */
+function evCalc(){
+  var ca=chargerAhead(),e=state.ev;
+  var km=num(e.kmNext)!=null?num(e.kmNext):(ca?ca.km:null);
+  var range=num(e.range),buf=num(e.buffer)||0;
+  var start=num(e.after)!=null?num(e.after):num(e.before);
+  var arr=(km!=null&&range&&start!=null)?Math.round(start-km/range*100):null;
+  var rec=(km!=null&&range)?Math.min(100,Math.ceil(km/range*100+buf)):null;
+  return{ca:ca,km:km,arr:arr,rec:rec};
+}
+function evDerivedHtml(){
+  var c=evCalc();
+  var nc=c.ca?c.ca.stop.name:'None saved ahead';
+  return '<div><small>⚡ Next charger</small><b>'+esc(nc)+'</b></div>'+
+    '<div><small>📍 Distance to it</small><b>'+(c.km!=null?fmtKm(c.km):'Enter below')+'</b></div>'+
+    '<div><small>🔌 Units needed</small><b class="big-n">'+(c.km!=null?Math.ceil(c.km/kpu()):'—')+'</b></div>'+
+    '<div><small>Range per unit</small><b>'+kpu()+' km</b></div>'+
+    '<div><small>🔋 Estimated arrival battery</small><b class="big-n">'+(c.arr!=null?c.arr+'%':'—')+'</b></div>'+
+    '<div><small>Recommended charge to</small><b class="big-n">'+(c.rec!=null?c.rec+'%':'—')+'</b></div>';
+}
+function renderEV(){
+  var e=state.ev,days=null;
+  var opts=MAIN.map(function(s){return '<option value="'+s.id+'"'+(e.draft===s.id?' selected':'')+'>'+esc(s.name)+'</option>'}).join('');
+  var h='<h1>EV</h1>'+
+    '<div class="panel"><h2>EV status</h2><p class="note-s">You type these numbers in. This app does not read live data from the car.</p>'+
+    '<div class="row2" style="margin-top:10px"><label class="fld"><span>Battery before stop (%)</span><input type="number" inputmode="numeric" min="0" max="100" data-ev="before" value="'+esc(e.before)+'"></label>'+
+    '<label class="fld"><span>Battery after charging (%)</span><input type="number" inputmode="numeric" min="0" max="100" data-ev="after" value="'+esc(e.after)+'"></label></div>'+
+    '<label class="fld"><span>Distance to next charger (km). Leave empty to use the route data</span><input type="number" inputmode="decimal" min="0" data-ev="kmNext" value="'+esc(e.kmNext)+'"></label>'+
+    '<div class="evgrid" id="evDerived">'+evDerivedHtml()+'</div>'+
+    '<details class="d"><summary>Car settings</summary><div class="row2">'+
+    '<label class="fld"><span>Real-world range at 100% (km)</span><input type="number" inputmode="numeric" min="1" data-ev="range" value="'+esc(e.range)+'"></label>'+
+    '<label class="fld"><span>Safety buffer (%)</span><input type="number" inputmode="numeric" min="0" max="50" data-ev="buffer" value="'+esc(e.buffer)+'"></label></div>'+
+    '<p class="note-s">Arrival battery and recommended charge are rough estimates from the range you enter. Highway speed, AC and load change real range.</p></details></div>'+
+    '<div class="form" id="evForm"><h2>Log a charge</h2>'+
+    '<label class="fld" style="margin:0"><span>Stop</span><select id="evStop">'+opts+'</select></label>'+
+    '<div class="row2"><label class="fld" style="margin:0"><span>Battery in (%)</span><input type="number" inputmode="numeric" min="0" max="100" id="evIn"></label>'+
+    '<label class="fld" style="margin:0"><span>Battery out (%)</span><input type="number" inputmode="numeric" min="0" max="100" id="evOut"></label></div>'+
+    '<label class="fld" style="margin:0"><span>Charger provider</span><input type="text" id="evProv" placeholder="Statiq, Jio, Adani…"></label>'+
+    '<fieldset class="cats"><legend>Did it work?</legend>'+STATUS.map(function(x,i){
+      return '<label><input type="radio" name="evst" value="'+x[0]+'"'+(x[0]==='unk'?' checked':'')+'><span>'+x[1]+' '+x[2]+'</span></label>';
+    }).join('')+'</fieldset>'+
+    '<button class="btn primary big" type="button" data-act="addlog">Save charge</button></div>'+
+    '<h2 class="sh">Charging history</h2>';
+  var log=e.log.slice().sort(function(a,b){return b.ts-a.ts});
+  if(!log.length)h+='<p class="empty">No charges logged yet.</p>';
+  log.forEach(function(l){
+    var st=STATUS.filter(function(x){return x[0]===l.st})[0]||STATUS[3];
+    h+='<div class="log"><div class="lh"><b>'+esc(stopName(l.stop))+'</b><span class="chip">'+st[1]+' '+st[2]+'</span><span class="when" style="margin-left:auto;color:var(--muted);font-size:13px">'+fmtDate(l.ts)+'</span></div>'+
+      '<div class="pct">'+(l.bin!==''&&l.bin!=null?esc(l.bin)+'%':'?')+' → '+(l.bout!==''&&l.bout!=null?esc(l.bout)+'%':'?')+(l.prov?' · '+esc(l.prov):'')+'</div>'+
+      '<div class="acts"><button class="btn small" type="button" data-act="dellog" data-id="'+l.id+'">Delete</button></div></div>';
+  });
+  return h+footHtml();
+}
+
+/* ----- checklist ----- */
+function renderList(){
+  var tot=0,dn=0;
+  var groups=CHECKLIST.map(function(g){
+    var items=g.items.map(function(t,i){return{id:g.g+':'+i,t:t,custom:false}});
+    state.ck.custom.filter(function(c){return c.g===g.g}).forEach(function(c){items.push({id:c.id,t:c.t,custom:true})});
+    return{g:g,items:items};
+  });
+  groups.forEach(function(x){x.items.forEach(function(it){tot++;if(state.ck.checked[it.id])dn++})});
+  var h='<h1>Checklist</h1><p class="count" style="margin-top:-6px">'+dn+' of '+tot+' packed</p>';
+  groups.forEach(function(x){
+    h+='<div class="ckg"><h2 class="sh">'+x.g.icon+' '+esc(x.g.g)+'</h2><ul class="ckl">'+x.items.map(function(it){
+      return '<li class="cki"><label><input type="checkbox" data-ck="'+esc(it.id)+'"'+(state.ck.checked[it.id]?' checked':'')+'><span>'+esc(it.t)+'</span></label>'+
+        (it.custom?'<button class="x" type="button" data-act="ckdel" data-id="'+esc(it.id)+'" aria-label="Remove '+esc(it.t)+'">✕</button>':'')+'</li>';
+    }).join('')+'</ul><div class="quick"><input type="text" data-ckin="'+esc(x.g.g)+'" placeholder="Add your own item" aria-label="Add item to '+esc(x.g.g)+'"><button class="btn small primary" type="button" data-act="ckadd" data-g="'+esc(x.g.g)+'">Add</button></div></div>';
+  });
+  h+='<div class="acts"><button class="btn small" type="button" data-act="ckreset">Untick everything</button></div>';
+  return h+footHtml();
+}
+
+/* ----- notes ----- */
+function renderNotes(){
+  var stopOpts='<option value="general">General (whole trip)</option>'+STOPS.map(function(s){return '<option value="'+s.id+'">'+esc(s.name)+'</option>'}).join('');
+  var h='<h1>Notes</h1><div class="form"><div><label class="l" for="noteStop">Which stop?</label><select id="noteStop">'+stopOpts+'</select></div>'+
+    '<fieldset class="cats"><legend>What is it about?</legend>'+CATS.map(function(c){
+      return '<label><input type="radio" name="cat" value="'+c[0]+'"'+(c[0]==='Other'?' checked':'')+'><span>'+c[1]+' '+c[0]+'</span></label>';
+    }).join('')+'</fieldset>'+
+    '<fieldset class="cats"><legend>Would we go back? (optional)</legend>'+
+    '<label><input type="radio" name="rate" value="" checked><span>No rating</span></label>'+
+    Object.keys(RATES).map(function(k){return '<label><input type="radio" name="rate" value="'+k+'"><span>'+RATES[k]+'</span></label>'}).join('')+'</fieldset>'+
+    '<div><label class="l" for="noteText">Your note</label><textarea id="noteText" placeholder="Example: the washroom was smelly at this place"></textarea></div>'+
+    '<button class="btn primary big" id="addNote" type="button" data-act="addnote">Add note</button></div>'+
+    '<div class="filter"><h2>Notes for next time</h2><select id="noteFilter" aria-label="Filter notes by stop"><option value="all">All stops</option>'+stopOpts+'</select></div><div id="noteList"></div>'+footHtml();
+  return h;
+}
+function noteListHtml(){
+  var f=ui.noteFilter;
+  var list=state.notes.filter(function(n){return f==='all'||n.stop===f}).slice().sort(function(a,b){return b.ts-a.ts});
+  if(!list.length)return '<p class="empty">No notes yet. Add one above so we remember for the next trip.</p>';
+  return list.map(function(n){
+    return '<div class="note"><div class="meta"><strong>'+esc(stopName(n.stop))+'</strong><span class="chip">'+(CATICON[n.cat]||'📝')+' '+esc(n.cat)+'</span>'+
+      (n.rate?'<span class="chip '+n.rate+'">'+RATES[n.rate]+'</span>':'')+'<span class="when">'+fmtDate(n.ts)+'</span></div>'+
+      '<p>'+esc(n.text)+'</p><button class="btn small" type="button" data-act="delnote" data-id="'+n.id+'">Delete</button></div>';
+  }).join('');
+}
+
+/* ----- journal ----- */
+function starsHtml(key,v){
+  var h='';for(var i=1;i<=5;i++)h+='<button type="button" data-act="star" data-day="'+key+'" data-v="'+i+'" class="'+(i<=v?'on':'')+'" aria-label="'+i+' star'+(i>1?'s':'')+'" aria-pressed="'+(i<=v)+'">★</button>';
+  return h;
+}
+function renderJournal(){
+  var days=buildDays();
+  var h='<h1>Journal</h1><p class="note-s" style="margin:-6px 0 4px">A little memory book of the trip. Fill in whatever you like.</p>';
+  days.forEach(function(d){
+    var key=d.end.id,j=state.jr[key]||{};
+    h+='<div class="panel"><h2>Day '+d.n+' — '+esc(d.start)+' → '+esc(d.end.name)+'</h2>'+
+      '<div class="photos" data-photos="'+key+'" aria-live="polite"></div>'+
+      '<div class="acts"><span class="btn small filebtn">📸 Add photos<input type="file" accept="image/*" multiple data-photoin="'+key+'" aria-label="Add photos for day '+d.n+'"></span></div>'+
+      JFIELDS.map(function(f){return '<label class="fld" style="margin-top:10px"><span>'+f[1]+'</span><input type="text" data-jr="'+f[0]+'" data-day="'+key+'" value="'+esc(j[f[0]]||'')+'"></label>'}).join('')+
+      '<div class="sub-h">Day rating</div><div class="stars" data-stars="'+key+'" role="group" aria-label="Day rating">'+starsHtml(key,j.rating||0)+'</div></div>';
+  });
+  return h+'<p class="note-s" id="photoMsg"></p>'+footHtml();
+}
+
+/* ---------- photos (IndexedDB, optional) ---------- */
+var idb=null,urls=[];
+function db(){return new Promise(function(res,rej){
+  if(idb)return res(idb);
+  try{var r=indexedDB.open('ptp-journal',1);
+    r.onupgradeneeded=function(){r.result.createObjectStore('photos',{keyPath:'id'})};
+    r.onsuccess=function(){idb=r.result;res(idb)};r.onerror=function(){rej(r.error)};
+  }catch(e){rej(e)}
+})}
+function tx(mode,fn){return db().then(function(d){return new Promise(function(res,rej){
+  var t=d.transaction('photos',mode),out=fn(t.objectStore('photos'));
+  t.oncomplete=function(){res(out&&out.result)};t.onerror=function(){rej(t.error)};
+})})}
+function shrink(file){return new Promise(function(res,rej){
+  var u=URL.createObjectURL(file),i=new Image();
+  i.onload=function(){var sc=Math.min(1,1000/Math.max(i.width,i.height)),c=document.createElement('canvas');
+    c.width=Math.round(i.width*sc);c.height=Math.round(i.height*sc);c.getContext('2d').drawImage(i,0,0,c.width,c.height);
+    c.toBlob(function(b){URL.revokeObjectURL(u);b?res(b):rej()},'image/jpeg',.72)};
+  i.onerror=function(){URL.revokeObjectURL(u);rej()};i.src=u;
+})}
+function loadPhotos(){
+  urls.forEach(function(u){URL.revokeObjectURL(u)});urls=[];
+  tx('readonly',function(st){return st.getAll()}).then(function(all){
+    $$('[data-photos]').forEach(function(box){
+      var key=box.getAttribute('data-photos');
+      box.innerHTML=(all||[]).filter(function(p){return p.day===key}).sort(function(a,b){return a.ts-b.ts}).map(function(p){
+        var u=URL.createObjectURL(p.blob);urls.push(u);
+        return '<figure><img alt="Trip photo" src="'+u+'"><button type="button" data-act="delphoto" data-id="'+p.id+'" aria-label="Delete photo">✕</button></figure>';
+      }).join('');
+    });
+  }).catch(function(){var m=$('#photoMsg');if(m)m.textContent='Photos are not available in this browser, but text entries still save.'});
+}
+
+/* ---------- map (simplified outlines, not exact borders) ---------- */
+var MAPS={
+AP:{n:'Andhra Pradesh',p:[[77.3,15.3],[77.3,16.0],[78.3,16.2],[79.3,16.4],[80.2,16.8],[80.9,17.3],[81.5,17.6],[82.2,18.2],[83.2,18.7],[84.8,19.1],[83.3,17.7],[82.3,16.6],[81.2,16.0],[80.3,15.5],[80.2,14.3],[80.1,13.5],[79.6,13.3],[78.6,13.5],[78.0,13.6],[77.6,13.7],[77.6,14.4],[77.3,14.9]]},
+TG:{n:'Telangana',p:[[77.3,16.0],[78.3,16.2],[79.3,16.4],[80.2,16.8],[80.9,17.3],[81.5,17.6],[80.9,18.3],[80.2,19.0],[79.5,19.95],[79.3,19.95],[78.6,19.95],[78.1,19.85],[77.9,19.0],[77.7,18.3],[77.2,17.6],[77.2,16.7]]},
+MH:{n:'Maharashtra',p:[[72.8,19.8],[73.2,20.6],[73.8,21.5],[74.5,21.6],[75.5,21.4],[76.5,21.5],[77.5,21.6],[78.3,21.55],[79.0,21.5],[79.6,21.8],[80.3,21.95],[80.5,21.0],[80.6,20.0],[80.4,19.4],[80.2,19.0],[79.5,19.95],[79.3,19.95],[78.6,19.95],[78.1,19.85],[77.9,19.0],[77.7,18.3],[77.2,17.6],[76.4,17.4],[75.6,17.0],[74.4,16.1],[73.7,15.7],[73.4,17.5],[72.9,18.9]]},
+MP:{n:'Madhya Pradesh',p:[[74.5,21.6],[75.5,21.4],[76.5,21.5],[77.5,21.6],[78.3,21.55],[79.0,21.5],[79.6,21.8],[80.3,21.95],[80.8,22.5],[81.5,23.4],[82.4,24.0],[82.8,24.4],[82.5,24.9],[81.5,25.0],[80.5,25.1],[79.6,25.2],[78.4,25.3],[78.55,25.9],[78.9,26.4],[78.6,26.8],[78.1,26.8],[77.6,26.5],[76.4,25.7],[75.8,25.3],[75.3,24.6],[74.8,24.1],[74.4,23.5],[74.0,22.6],[74.2,21.9]]},
+UP:{n:'Uttar Pradesh',p:[[78.4,25.3],[79.6,25.2],[80.5,25.1],[81.5,25.0],[82.5,24.9],[82.8,24.4],[83.2,24.2],[83.9,24.5],[84.2,25.0],[83.7,25.6],[84.0,26.1],[84.6,26.4],[84.6,27.0],[84.0,27.4],[83.3,27.4],[82.5,27.8],[81.6,28.3],[81.0,28.7],[80.5,28.7],[79.9,28.9],[79.4,29.0],[78.9,29.6],[78.5,30.0],[77.9,30.1],[77.55,29.6],[77.35,28.85],[77.35,28.4],[77.4,27.5],[77.7,27.0],[78.1,26.85],[78.6,26.8],[78.9,26.4],[78.55,25.9]]},
+DL:{n:'Delhi',p:[[77.05,28.55],[77.1,28.88],[77.35,28.85],[77.35,28.4],[77.2,28.4]]},
+PB:{n:'Punjab (side trip)',p:[[73.9,29.6],[74.0,30.6],[74.5,31.3],[75.1,32.0],[75.6,32.5],[76.4,32.3],[76.5,31.6],[76.2,30.9],[76.7,30.2],[76.2,29.9],[75.4,29.8]]}
+};
+var STOPGEO={ptp:[14.165,77.811,'AP'],knl:[15.83,78.04,'AP'],hyd:[17.385,78.487,'TG'],adb:[19.67,78.53,'TG'],hng:[20.55,78.84,'MH'],ngp:[21.146,79.088,'MH'],seo:[22.085,79.54,'MP'],jbp:[23.18,79.95,'MP'],sgr:[23.84,78.74,'MP'],jhs:[25.448,78.569,'UP'],gwl:[26.218,78.182,'MP'],agr:[27.176,78.008,'UP'],noi:[28.535,77.391,'UP'],del:[28.614,77.209,'DL'],pat:[30.34,76.39,'PB']};
+var MAPORDER=['AP','TG','MH','MP','UP','DL'];
+function px(lon,lat){return[((lon-72)*0.93*28).toFixed(1),((33-lat)*28).toFixed(1)]}
+function pip(x,y,poly){var c=false;for(var i=0,j=poly.length-1;i<poly.length;j=i++){var a=poly[i],b=poly[j];if((a[1]>y)!==(b[1]>y)&&x<(b[0]-a[0])*(y-a[1])/(b[1]-a[1])+a[0])c=!c}return c}
+function stateAt(lon,lat){var o=['DL','PB','AP','TG','MH','MP','UP'];for(var i=0;i<o.length;i++)if(pip(lon,lat,MAPS[o[i]].p))return o[i];return null}
+function crossed(c){
+  var o=state.map.ov[c];if(o!==undefined)return o;
+  if(state.map.gps[c])return true;
+  return STOPS.some(function(s){return STOPGEO[s.id]&&STOPGEO[s.id][2]===c&&state.done[s.id]});
+}
+function applyView(){
+  var sv=$('#mapsvg');if(!sv)return;
+  var z=ui.vz,W=365,H=574,w=W/z,h=H/z;
+  ui.vx=Math.max(w/2,Math.min(W-w/2,ui.vx));ui.vy=Math.max(h/2,Math.min(H-h/2,ui.vy));
+  sv.setAttribute('viewBox',(ui.vx-w/2)+' '+(ui.vy-h/2)+' '+w+' '+h);
+  $$('.mstop',sv).forEach(function(c){c.setAttribute('r',6/z);c.style.strokeWidth=2/z});
+  $$('.me',sv).forEach(function(c){c.setAttribute('r',7/z);c.style.strokeWidth=2.5/z});
+  $$('.mt',sv).forEach(function(e){e.style.fontSize=(13/z)+'px';e.style.strokeWidth=(3/z)+'px'});
+  $$('.sl',sv).forEach(function(e){
+    e.style.display=z<2?'none':'';e.style.fontSize=(12/z)+'px';e.style.strokeWidth=(3/z)+'px';
+    e.setAttribute('x',+e.getAttribute('data-x')+9/z);e.setAttribute('y',+e.getAttribute('data-y')+4/z);
+  });
+  $$('.dl',sv).forEach(function(e){
+    e.style.display=z<2.5?'none':'';e.style.fontSize=(10.5/z)+'px';e.style.strokeWidth=(3/z)+'px';
+    e.textContent=z>=4?e.getAttribute('data-full'):e.getAttribute('data-km');
+    e.setAttribute('x',e.getAttribute('data-x'));e.setAttribute('y',+e.getAttribute('data-y')-5/z);
+  });
+}
+function zoomBy(f,cx,cy){
+  var sv=$('#mapsvg');if(!sv)return;
+  var r=sv.getBoundingClientRect(),W=365,H=574;
+  var fx=cx==null?.5:(cx-r.left)/r.width,fy=cy==null?.5:(cy-r.top)/r.height;
+  var w=W/ui.vz,h=H/ui.vz,x0=ui.vx-w/2+fx*w,y0=ui.vy-h/2+fy*h;
+  ui.vz=Math.max(1,Math.min(8,ui.vz*f));
+  w=W/ui.vz;h=H/ui.vz;ui.vx=x0-fx*w+w/2;ui.vy=y0-fy*h+h/2;applyView();
+}
+function bindMap(){
+  var sv=$('#mapsvg');if(!sv)return;
+  var pts={},d0=0,moved=0;
+  sv.addEventListener('pointerdown',function(e){
+    pts[e.pointerId]=[e.clientX,e.clientY];moved=0;
+    var k=Object.keys(pts);if(k.length===2)d0=Math.hypot(pts[k[0]][0]-pts[k[1]][0],pts[k[0]][1]-pts[k[1]][1]);
+  });
+  sv.addEventListener('pointermove',function(e){
+    var p=pts[e.pointerId];if(!p)return;
+    var k=Object.keys(pts);
+    if(k.length===1){
+      var r=sv.getBoundingClientRect(),sc=(365/ui.vz)/r.width,dx=e.clientX-p[0],dy=e.clientY-p[1];
+      moved+=Math.abs(dx)+Math.abs(dy);
+      if(moved>6){ui.vx-=dx*sc;ui.vy-=dy*sc;applyView();ui.dragged=true}
+      pts[e.pointerId]=[e.clientX,e.clientY];
+    } else if(k.length===2){
+      pts[e.pointerId]=[e.clientX,e.clientY];
+      var a=pts[k[0]],b=pts[k[1]],dd=Math.hypot(a[0]-b[0],a[1]-b[1]);
+      if(d0>0)zoomBy(dd/d0,(a[0]+b[0])/2,(a[1]+b[1])/2);
+      d0=dd;ui.dragged=true;
+    }
+  });
+  function up(e){delete pts[e.pointerId];setTimeout(function(){ui.dragged=false},60)}
+  sv.addEventListener('pointerup',up);sv.addEventListener('pointercancel',up);sv.addEventListener('pointerleave',up);
+  sv.addEventListener('click',function(e){if(ui.dragged){e.stopPropagation();e.preventDefault()}},true);
+  sv.addEventListener('wheel',function(e){e.preventDefault();zoomBy(e.deltaY<0?1.2:1/1.2,e.clientX,e.clientY)},{passive:false});
+}
+function renderMap(){
+  var cnt=MAPORDER.filter(crossed).length;
+  var svg='<svg id="mapsvg" viewBox="0 0 365 574" role="img" aria-label="Route map. Zoom in to see place names and distances." style="width:100%;max-width:420px;display:block;margin:0 auto;border-radius:14px;touch-action:none;background:var(--chip)">';
+  var gl='',i0;
+  for(var lo=74;lo<=86;lo+=2){var g1=px(lo,12.5),g2=px(lo,33);gl+='<line x1="'+g1[0]+'" y1="'+g1[1]+'" x2="'+g2[0]+'" y2="'+g2[1]+'"/>'}
+  for(var la=14;la<=32;la+=2){var h1=px(72,la),h2=px(86,la);gl+='<line x1="'+h1[0]+'" y1="'+h1[1]+'" x2="'+h2[0]+'" y2="'+h2[1]+'"/>'}
+  svg+='<g class="grat" aria-hidden="true">'+gl+'</g>';
+  Object.keys(MAPS).forEach(function(c){
+    var m=MAPS[c],cx=0,cy=0;
+    var pts=m.p.map(function(q){cx+=q[0];cy+=q[1];return px(q[0],q[1]).join(',')}).join(' ');
+    var lp=px(cx/m.p.length,cy/m.p.length),cr=crossed(c);
+    svg+='<polygon class="ms'+(cr?' on':'')+(c==='PB'?' side':'')+'" points="'+pts+'" data-act="mapsel" data-k="state" data-c="'+c+'" tabindex="0" role="button" aria-label="'+esc(m.n)+(cr?', crossed':', not crossed yet')+'"/>'+
+      '<text class="mt" x="'+lp[0]+'" y="'+lp[1]+'" text-anchor="middle">'+c+'</text>';
+  });
+  var ms=MAIN.filter(function(x){return STOPGEO[x.id]});
+  var line=ms.map(function(x){return px(STOPGEO[x.id][1],STOPGEO[x.id][0]).join(',')}).join(' ');
+  svg+='<polyline class="mcase" points="'+line+'"/><polyline class="mroute" points="'+line+'"/>';
+  for(i0=1;i0<ms.length;i0++){
+    var A=STOPGEO[ms[i0-1].id],B=STOPGEO[ms[i0].id],kk=segKm(ms[i0]);
+    if(kk==null)continue;
+    var mp=px((A[1]+B[1])/2,(A[0]+B[0])/2);
+    svg+='<text class="dl" data-x="'+mp[0]+'" data-y="'+mp[1]+'" data-km="'+fmtKm(kk)+'" data-full="'+esc(segText(ms[i0]))+'" text-anchor="middle" style="display:none"></text>';
+  }
+  STOPS.forEach(function(x){
+    var g=STOPGEO[x.id];if(!g)return;
+    var p=px(g[1],g[0]);
+    svg+='<circle class="mstop'+(state.done[x.id]?' done':'')+'" cx="'+p[0]+'" cy="'+p[1]+'" r="6" data-act="mapsel" data-k="stop" data-id="'+x.id+'" tabindex="0" role="button" aria-label="'+esc(x.name)+(state.done[x.id]?', visited':'')+'"/>';
+  });
+  STOPS.forEach(function(x){
+    var g=STOPGEO[x.id];if(!g)return;
+    var p=px(g[1],g[0]);
+    svg+='<text class="sl" data-x="'+p[0]+'" data-y="'+p[1]+'" x="'+p[0]+'" y="'+p[1]+'" style="display:none">'+esc(x.name)+(state.done[x.id]?' ✓':'')+'</text>';
+  });
+  if(ui.pos){var q=px(ui.pos[1],ui.pos[0]);svg+='<circle class="me" cx="'+q[0]+'" cy="'+q[1]+'" r="7"><title>You are here</title></circle>'}
+  svg+='</svg>';
+  var sel=ui.sel,info='';
+  if(sel&&sel.k==='state'&&MAPS[sel.v]){
+    var cr=crossed(sel.v),nm=STOPS.filter(function(x){return STOPGEO[x.id]&&STOPGEO[x.id][2]===sel.v}).map(function(x){return x.name}).join(', ');
+    info='<div class="panel"><h2>'+esc(MAPS[sel.v].n)+'</h2><p class="note-s">'+(cr?'✅ Crossed':'Not crossed yet')+'</p><p style="margin:6px 0">Stops here: '+esc(nm||'none')+'</p><button class="btn small" type="button" data-act="maptoggle" data-c="'+sel.v+'">'+(cr?'Mark as not crossed':'Mark as crossed')+'</button></div>';
+  } else if(sel&&sel.k==='stop'&&stopById(sel.v)){
+    var st=stopById(sel.v);
+    info='<div class="panel"><h2>'+esc(st.name)+'</h2><p class="note-s">'+(state.done[st.id]?'✅ Visited':'Not visited yet')+'</p><div class="acts"><a class="btn small primary" target="_blank" rel="noopener" href="'+navUrl(st)+'">🗺️ Navigate</a></div></div>';
+  }
+  var nx=nextStop();
+  var gm=ui.pos?'https://www.google.com/maps/search/?api=1&query='+ui.pos[0]+','+ui.pos[1]:(nx?navUrl(nx):'https://www.google.com/maps');
+  var h='<h1>Map</h1><p class="count" style="margin-top:-6px">'+cnt+' of '+MAPORDER.length+' states crossed</p>'+
+    '<div class="chips" style="margin:0 0 12px">'+MAPORDER.map(function(c){return '<span class="chip">'+(crossed(c)?'✅':'○')+' '+esc(MAPS[c].n)+'</span>'}).join('')+'</div>'+
+    '<div class="mapwrap" style="position:relative;max-width:420px;margin:0 auto">'+svg+'<div class="mapctl"><button type="button" data-act="mapz" data-d="1" aria-label="Zoom in">＋</button><button type="button" data-act="mapz" data-d="-1" aria-label="Zoom out">－</button><button type="button" class="sm" data-act="mapz" data-d="0" aria-label="Reset zoom">Reset</button><button type="button" class="sm" data-act="mapnext" aria-label="Zoom to next stop">Next</button></div></div>'+
+    '<div class="stack" style="margin-top:12px"><button class="btn primary big" type="button" data-act="locate">📍 Show my location</button>'+
+    '<a class="btn big" target="_blank" rel="noopener" href="'+gm+'">🗺️ '+(ui.pos?'Open my location in Google Maps':'Open next stop in Google Maps')+'</a></div>'+
+    (ui.mapMsg?'<p class="note-s" role="status">'+esc(ui.mapMsg)+'</p>':'')+
+    '<div style="margin-top:12px">'+info+'</div>'+
+    '<p class="note-s">Pinch, scroll or use the ＋ and － buttons to zoom, and drag to move. Zoom in to see place names and distances. States turn green when you tick a stop in them or when your location enters them. Tap a state to fix it by hand. Outlines are simplified, not exact borders. Google Maps cannot be embedded in this page, so the buttons open it instead.</p>';
+  return h+footHtml();
+}
+
+/* ---------- render control ---------- */
+var VIEWS={today:renderToday,route:renderRoute,map:renderMap,ev:renderEV,list:renderList,notes:renderNotes,journal:renderJournal};
+function render(keepScroll){
+  var y=window.scrollY;
+  $('#app').innerHTML=VIEWS[ui.tab]();
+  renderNav();
+  if(ui.tab==='notes'){$('#noteFilter').value=ui.noteFilter;$('#noteList').innerHTML=noteListHtml()}
+  if(ui.tab==='journal')loadPhotos();
+  if(ui.tab==='map'){bindMap();applyView()}
+  if(keepScroll)window.scrollTo(0,y);
+}
+function setTab(t){ui.tab=t;render(false);window.scrollTo(0,0)}
+function refocus(sel){var e=$(sel);if(e)e.focus()}
+function arm(btn,label,cb){
+  if(btn.dataset.armed){cb();return}
+  var orig=btn.textContent;btn.dataset.armed='1';btn.textContent=label;btn.classList.add('danger');
+  setTimeout(function(){if(btn.isConnected){delete btn.dataset.armed;btn.textContent=orig;btn.classList.remove('danger')}},3500);
+}
+function addNote(stop,cat,text,rate){
+  text=(text||'').trim();if(!text)return false;
+  state.notes.push({id:nowId('n'),stop:stop,cat:cat,text:text,rate:rate||'',ts:Date.now()});save();return true;
+}
+
+/* ---------- events ---------- */
+document.addEventListener('click',function(e){
+  var t=e.target.closest('[data-act]');if(!t)return;
+  var a=t.dataset.act,id=t.dataset.id;
+  if(a==='tab'){setTab(t.dataset.tab);return}
+  if(a==='mapsel'){ui.sel={k:t.dataset.k,v:t.dataset.c||t.dataset.id};render(true);return}
+  if(a==='mapz'){var dz=t.dataset.d;if(dz==='0'){ui.vz=1;ui.vx=182.5;ui.vy=287;applyView()}else zoomBy(dz==='1'?1.6:1/1.6);return}
+  if(a==='mapnext'){var nx0=nextStop(),g0=nx0&&STOPGEO[nx0.id];if(g0){var q0=px(g0[1],g0[0]);ui.vz=3.5;ui.vx=+q0[0];ui.vy=+q0[1];applyView()}return}
+  if(a==='maptoggle'){var c0=t.dataset.c;state.map.ov[c0]=!crossed(c0);save();render(true);return}
+  if(a==='locate'){
+    if(!navigator.geolocation){ui.mapMsg='Location is not available in this browser.';render(true);return}
+    ui.mapMsg='Finding you…';render(true);
+    if(ui.watch!=null)navigator.geolocation.clearWatch(ui.watch);
+    ui.watch=navigator.geolocation.watchPosition(function(p){
+      ui.pos=[p.coords.latitude,p.coords.longitude];ui.mapMsg='';
+      var c=stateAt(ui.pos[1],ui.pos[0]);
+      if(c&&!state.map.gps[c]){state.map.gps[c]=true;save()}
+      if(ui.tab==='map')render(true);
+    },function(){ui.mapMsg='Could not get your location. Allow location access for this page and try again.';if(ui.tab==='map')render(true)},{enableHighAccuracy:true,maximumAge:15000,timeout:20000});
+    return;
+  }
+  if(a==='check'){
+    if(state.done[id])delete state.done[id];else{state.done[id]=true;if(state.here===id)state.here=null}
+    save();render(true);refocus('[data-act="check"][data-id="'+id+'"]');return;
+  }
+  if(a==='toggle'){ui.open[id]=!ui.open[id];render(true);refocus('[data-act="toggle"][data-id="'+id+'"]');return}
+  if(a==='gostop'){ui.open[id]=true;ui.tab='route';render(false);var el=$('#stop-'+id);if(el)el.scrollIntoView({block:'start'});return}
+  if(a==='here'){state.here=id;ui.hv=null;save();setTab('today');return}
+  if(a==='unhere'){state.here=null;ui.hv=null;save();render(true);return}
+  if(a==='visit'){if(state.here){state.done[state.here]=true;state.here=null;ui.hv=null;save();render(false);window.scrollTo(0,0)}return}
+  if(a==='hv'){ui.hv=ui.hv===t.dataset.k?null:t.dataset.k;render(true);refocus('[data-act="hv"][data-k="'+t.dataset.k+'"]');return}
+  if(a==='logcharge'){state.ev.draft=id;save();setTab('ev');return}
+  if(a==='status'){var d=state.pd[t.dataset.k]=state.pd[t.dataset.k]||{};d.status=t.dataset.v;save();render(true);refocus('[data-act="status"][data-k="'+t.dataset.k+'"][data-v="'+t.dataset.v+'"]');return}
+  if(a==='addplace'){
+    var n=$('[data-newname="'+id+'"]'),k=$('[data-newkind="'+id+'"]'),ph=$('[data-newphone="'+id+'"]');
+    if(!n.value.trim()){n.focus();return}
+    (state.custom[id]=state.custom[id]||[]).push({id:nowId('p'),n:n.value.trim(),k:k.value,phone:ph.value.trim()});
+    ui.open[id]=true;save();render(true);return;
+  }
+  if(a==='delplace'){arm(t,'Tap again to remove',function(){
+    state.custom[id]=(state.custom[id]||[]).filter(function(c){return c.id!==t.dataset.cid});
+    delete state.pd[id+':c'+t.dataset.cid];save();render(true);
+  });return}
+  if(a==='quicknote'){var inp=$('[data-quick="'+id+'"]');if(addNote(id,'Other',inp.value,'')){ui.open[id]=true;render(true)}else inp.focus();return}
+  if(a==='resetticks'){arm(t,'Tap again to clear ticks',function(){state.done={};state.here=null;save();render(true)});return}
+  if(a==='addlog'){
+    var l={id:nowId('l'),stop:$('#evStop').value,bin:$('#evIn').value,bout:$('#evOut').value,prov:$('#evProv').value.trim(),st:($('input[name=evst]:checked')||{}).value||'unk',ts:Date.now()};
+    state.ev.log.push(l);state.ev.draft='';save();render(true);return;
+  }
+  if(a==='dellog'){arm(t,'Tap again to delete',function(){state.ev.log=state.ev.log.filter(function(x){return x.id!==id});save();render(true)});return}
+  if(a==='ckadd'){var ci=$('[data-ckin="'+t.dataset.g+'"]');var tx2=ci.value.trim();if(!tx2){ci.focus();return}
+    state.ck.custom.push({id:nowId('c'),g:t.dataset.g,t:tx2});save();render(true);refocus('[data-ckin="'+t.dataset.g+'"]');return}
+  if(a==='ckdel'){state.ck.custom=state.ck.custom.filter(function(c){return c.id!==id});delete state.ck.checked[id];save();render(true);return}
+  if(a==='ckreset'){arm(t,'Tap again to untick all',function(){state.ck.checked={};save();render(true)});return}
+  if(a==='addnote'){
+    var cat=($('input[name=cat]:checked')||{}).value||'Other',rate=($('input[name=rate]:checked')||{}).value||'';
+    if(addNote($('#noteStop').value,cat,$('#noteText').value,rate)){$('#noteText').value='';$('#noteList').innerHTML=noteListHtml()}else $('#noteText').focus();
+    return;
+  }
+  if(a==='delnote'){arm(t,'Tap again to delete',function(){state.notes=state.notes.filter(function(n){return n.id!==id});save();$('#noteList').innerHTML=noteListHtml()});return}
+  if(a==='star'){
+    var key=t.dataset.day,v=Number(t.dataset.v),j=state.jr[key]=state.jr[key]||{};
+    j.rating=(j.rating===v)?0:v;save();
+    $('[data-stars="'+key+'"]').innerHTML=starsHtml(key,j.rating);
+    refocus('[data-stars="'+key+'"] [data-v="'+v+'"]');return;
+  }
+  if(a==='delphoto'){arm(t,'Delete?',function(){tx('readwrite',function(st){return st.delete(id)}).then(loadPhotos)});return}
+});
+
+document.addEventListener('keydown',function(e){
+  if(e.key!=='Enter')return;
+  var t=e.target;
+  if(t.matches('[data-quick]')){var b=$('[data-act="quicknote"][data-id="'+t.dataset.quick+'"]');if(b)b.click()}
+  else if(t.matches('[data-ckin]')){var c=$('[data-act="ckadd"][data-g="'+t.dataset.ckin+'"]');if(c)c.click()}
+});
+
+document.addEventListener('keydown',function(e){
+  if((e.key==='Enter'||e.key===' ')&&e.target.matches&&e.target.matches('.ms,.mstop')){e.preventDefault();e.target.dispatchEvent(new MouseEvent('click',{bubbles:true}))}
+});
+document.addEventListener('input',function(e){
+  var t=e.target;
+  if(t.matches('[data-ev]')){state.ev[t.dataset.ev]=t.value;saveSoon();var dv=$('#evDerived');if(dv)dv.innerHTML=evDerivedHtml()}
+  else if(t.matches('[data-jr]')){var j=state.jr[t.dataset.day]=state.jr[t.dataset.day]||{};j[t.dataset.jr]=t.value;saveSoon()}
+});
+
+document.addEventListener('change',function(e){
+  var t=e.target;
+  if(t.matches('[data-pd]')){
+    var d=state.pd[t.dataset.k]=state.pd[t.dataset.k]||{};d[t.dataset.pd]=t.value.trim();save();
+    var sid=t.dataset.k.split(':')[0],s=stopById(sid),p=placesOf(s).filter(function(x){return x.key===t.dataset.k})[0];
+    var box=$('[data-pdinfo="'+t.dataset.k+'"]');if(box&&p)box.innerHTML=infoHtml(p);
+    if(t.dataset.pd==='provider'){var pb=$('[data-pdprov="'+t.dataset.k+'"]');if(pb)pb.textContent='⚡ '+(t.value.trim()||'Provider not set')}
+  }
+  else if(t.matches('[data-ov]')){var o=state.ov[t.dataset.id]=state.ov[t.dataset.id]||{};o[t.dataset.ov]=t.value;save();render(true)}
+  else if(t.matches('[data-over]')){var o2=state.ov[t.dataset.over]=state.ov[t.dataset.over]||{};o2.over=t.checked;save();render(true)}
+  else if(t.matches('[data-ck]')){if(t.checked)state.ck.checked[t.dataset.ck]=true;else delete state.ck.checked[t.dataset.ck];save();
+    var cnt=0,tot=0;$$('[data-ck]').forEach(function(x){tot++;if(x.checked)cnt++});var c=$('.count');if(c)c.textContent=cnt+' of '+tot+' packed'}
+  else if(t.matches('[data-set]')){state.set[t.dataset.set]=t.value;save();render(true)}
+  else if(t.id==='noteFilter'){ui.noteFilter=t.value;$('#noteList').innerHTML=noteListHtml()}
+  else if(t.matches('[data-photoin]')){
+    var key=t.dataset.photoin,files=Array.prototype.slice.call(t.files||[]);if(!files.length)return;
+    var m=$('#photoMsg');if(m)m.textContent='Saving photos…';
+    files.reduce(function(chain,f){return chain.then(function(){return shrink(f).then(function(b){
+      return tx('readwrite',function(st){return st.put({id:nowId('ph'),day:key,blob:b,ts:Date.now()})});
+    })})},Promise.resolve()).then(function(){if(m)m.textContent='';loadPhotos()}).catch(function(){if(m)m.textContent='Could not save one of the photos. Try again.'});
+    t.value='';
+  }
+});
+
+render(false);
+})();
+</script>
+</body>
+</html>
